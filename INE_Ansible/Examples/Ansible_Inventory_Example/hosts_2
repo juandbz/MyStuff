@@ -1,0 +1,9 @@
+# 1. Uses hostname for host
+
+[ios-devices]
+192.168.1.250.xip.io ansible_ssh_user="cisco" ansible_ssh_password="cisco"
+192.168.1.251.xip.io ansible_ssh_user="cisco" ansible_ssh_password="cisco"
+
+
+
+

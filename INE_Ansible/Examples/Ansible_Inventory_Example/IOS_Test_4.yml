@@ -1,0 +1,29 @@
+---
+- name: show version
+  # different group in hosts_4 file without further definition
+  hosts: "tor"
+  gather_facts: false
+  connection: local
+
+  vars: 
+    cli:
+      # Uses variable alias in hosts_3 file
+      host: "{{ ansible_host }}"
+      # Note. The username and password are variables instead of statically configured
+      username: "{{ ansible_ssh_user }}"
+      password: "{{ ansible_ssh_password }}"
+#      transport: cli
+
+  tasks:
+    - name: show version
+      ios_command: 
+        commands: show version
+        provider: "{{ cli }}"
+      
+      register: output
+
+    - name: show output
+      debug:
+        var: output.stdout
+
+

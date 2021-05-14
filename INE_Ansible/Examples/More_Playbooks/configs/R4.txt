@@ -1,0 +1,16 @@
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R4
+!
+boot-start-marker
+boot-end-marker
+!
+interface loopback 0
+  ip address 4.4.4.4 255.255.255.255
+!
+router bgp 65002
+

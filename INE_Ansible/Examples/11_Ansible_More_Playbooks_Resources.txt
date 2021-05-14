@@ -1,0 +1,17 @@
+- IOS Config Module for ACL
+http://docs.ansible.com/ansible/ios_config_module.html
+
+- Tempalte Module
+http://docs.ansible.com/ansible/template_module.html
+
+- Jinja2 Filters
+http://docs.ansible.com/ansible/playbooks_filters.html
+
+- Ansible-Vault
+https://www.ansible.com/blog/2014/02/19/ansible-vault
+
+
+
+
+
+

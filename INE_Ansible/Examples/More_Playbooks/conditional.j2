@@ -1,0 +1,7 @@
+output = {{ output }}
+{% if "R1" in output.stdout[0] %}
+device = "R1"
+{% else %}
+device = "R2"
+{% endif %}
+

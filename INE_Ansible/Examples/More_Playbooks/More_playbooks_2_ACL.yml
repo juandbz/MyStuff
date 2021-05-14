@@ -1,0 +1,38 @@
+---
+- name: configure access list on FE0/0
+  hosts: "ios-devices"
+  gather_facts: false
+  connection: local
+
+  vars: 
+    cli:
+      host: "{{ ansible_host }}"
+      username: "{{ ansible_user }}"
+      password: "{{ ansible_password }}"
+      transport: cli
+
+  tasks:
+    - name: create access-list
+      ios_config: 
+        lines:
+          - 10 permit ip 192.168.24.0 0.0.0.255 any
+          - 20 deny ip any any
+        parents: ip access-list extended permit_mgmt
+        #before: no ip access-list extended permit_mgmt
+        match: exact
+        provider: "{{ cli }}"
+      
+      register: output
+
+    - name: show output
+      debug:
+        var: output.stdout
+   
+    - name: configure access-list to FE0/0 interface
+      ios_config:
+        lines: 
+          - description management interface
+          - ip access-group permit_mgmt in
+        parents: interface FastEthernet 0/0
+        match: exact
+        provider: "{{ cli }}"

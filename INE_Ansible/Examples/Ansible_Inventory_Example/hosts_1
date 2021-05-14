@@ -1,0 +1,10 @@
+# 1. Uses variables directly in inventory file (username / password)
+# 2. Uses IP address for host
+
+[ios-devices]
+192.168.1.250 ansible_ssh_user="cisco" ansible_ssh_password="cisco"
+192.168.1.251 ansible_ssh_user="cisco" ansible_ssh_password="cisco"
+
+
+
+
