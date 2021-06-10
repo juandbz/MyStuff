@@ -1,0 +1,21 @@
+1.1 Understanding the File System Layout in the FHS
+HDD
+/boot - standard dir use to boot everything your computer need to startup
+/usr - default dir where your binaries are in 
+/var - is where the linux operating system is booting log files
+/home - this is where user dir are
+/dev - interfaces are found here
+/etc - is for config files
+/mnt - for manual mount
+/media - for automatic mount
+/opt - for optional stuff
+/run - contains info about running processes
+/tmp - for temporary files
+
+
+Mounting 
+FHS 
+
+1.2 Knowing the location and purpose of important Files and 
+Directories as Defined in the FHS
+

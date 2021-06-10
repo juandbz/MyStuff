@@ -1,0 +1,94 @@
+IGMP(IPv4) - Internet Group Management Protocol
+IGMP Snooping - creates a Multicast MAC table to forward traffic only 
+			to where they need to go instead of flooding it
+IGMP Filtering
+MLDP - Multicast Listener Discovery Protocol(IPv6)
+MLDP Snooping
+PIM Snooping
+OUI:
+0100:5exx:xxxx(IPv4)MulticastL2 inject last 
+3333:xxxx:xxxx(IPv6)MulticastL2 inject last 2 octets of IPv6 address
+
+GDA - Group Destination Address
+PIM - Protocol Independent multicast
+IGMP - Between receiver(pc) and default gateway to joing GDA
+============================================================================
+IGMPv1 - IP Protocol 2 only has 2 Message Types
+IGMP Query(General Query type code-0x11) - Sent by Router every min to check if anyone is listening to Mcast 
+IGMP Membership Report(JOIN) - Sent(type code: 0x12) by Receiver to the router to subscribe Mcast feed
+							and to keep Mcast stream from terminating by replying to IGMP Querys
+
+224.0.0.1 - "All Multicast Host" address with a 0.0.0.0 in the GDA in Mcast header
+
+Every min the IGMP Query is sent a host must reply with IGMP Membership Report
+If no host is interested in the Mcast stream router will terminate Mcast stream after 3 Querys
+
+1 Query is sent out per subnet needs 1 report back otherwise will terminate the stream
+==============================================================================================
+IGMPv2 - has 4 Message Types
+IGMP Membership Report(JOIN) - Same as IGMPv1 expect type code: 0x16
+IGMP Query(General Query or Group Membership Query) - Same as IGMPv1 sent to 224.0.0.1 all Multicast Host
+IGMP Leave(type code 0x17) - "should" be sent by the receiver when disconnection from Mcast stream
+						Sent to "All Multicast Routers" address of 224.0.0.2
+Group-Specific Query - Sent after a Leave, Same as General query(sent every sec) sent to GDA instead of all host
+					Terminates stream if no one responses with report after 3 Group-Specific Querys
+
+IGMPv2 has a Max response time(10secs) that host must response back to IGMP Querys with a report
+		When using Group-Specific Querys Max response-time is 1 second
+Command to change IGMP Query interval - ip IGMP query-interval <secs>
+Command to change IGMP Max response time - ip IGMP query-max-response-time <secs>
+Command to change IGMP Group specific query - ip IGMP last-member-query-count<secs>
+Command to change IGMP Max response time - ip IGMP last-member-query-interval<msecs>
+
+IGMPv2 Querier elected by the lowest IP when using 2 or more IGMP Routers on same broadcast domain
+Non-Queriers will become Querier if 255 secs go by and not see a query
+
+Command to change IGMP "Other Querier Present Interval" - ip IGMP query-timeout<secs60-300>
+=================================================================================
+IGMPv3 - must be manually configured by source/receiver
+v3 is "Source-Specific Multicast" receiver has the option to exclude/include to subscribe to certain feeds
+Inside the Group Membership Query
+Querier robustness variable - receiver will have this to come up with how long to resend reports
+Querier Query interval code - secs to how often to send the query
+
+Group Membership Report sent to new "All IGMPv3 Routers" address 224.0.0.22 instead of GDA
+Record-Type field in report indicates to include or exclude source 
+
+IGMP Snooping(RFC4541)
+-Proxy reporting - rate-limits quantity of IGMP reports forwarded to Mcast Router(s)
+-Switch will response to router's query with 1 of host's IGMP report
+-If host sends a Leave Switch will response with a query unless configured for FastLeave/Immediate Leave
+-Switch will only forward a Leave to router if all host leaves the streams
+
+Command to configure Immediate Leave - ip igmp snooping fast-leave(under interface)
+								or (globally) - ip igmp snooping vlan <id> immediate-leave
+								
+Switch dynamically learns of an mrouter by listening to IGMP Queries/PIM/DVMRP
+Or can statically be learn with this command - ip igmp snooping vlan <id> mrouter learn{cgmp | pim-dvmrp}
+
+If Source and Receiver is in same Vlan, switch still needs Mrouter Port
+If this is the case make switch the IGMP querier so Mrouter doesnt have to be congested with Mcast traffic
+  Command to do this - ip igmp snooping querier
+  
+Verification commands:
+	show ip igmp snooping
+	show ip igmp snooping mrouter
+	show ip igmp snooping group
+
+IGMP Filtering allows you to deny/allow groups with the following command
+	ip igmp snooping access-group acl [vlan vlan_id]
+	ip igmp snooping limit n [except acl] [vlan vlan_id]
+	ip igmp snooping minimum-version 2 | 3
+
+	ip igmp snooping filter interface <interface-name>[details | statistics]
+=====================================================================================	
+MLDP = Multicast Listener Discovery Protocol
+MLDv1 based of IGMPv2
+MLDv2 based of IGMPv3
+
+MLDP - Multicast Listener Report Message same as IGMPv3
+	sent to "all MLDP-capable routers" address FF02::16
+==================================
+PIM = Protocol Independent multicast
+Multicast routing protocol
+uses Unicast and Multicast Messages 224.0.0.13
