@@ -1,0 +1,40 @@
+Hands-On Challenges - Working With CSV Files
+How to solve these coding challenges:
+
+Write your solution in PyCharm or in your preferred Python IDE.
+
+If your solution is not correct, then try to understand the error messages, watch the video again, rewrite the solution, and test it again. Repeat this step until you get the correct solution.
+
+Save the solution in a file for future reference or recap.
+
+
+
+Challenge #1
+
+Consider the following Python list:
+
+people = [
+
+['Dan', 34, 'Bucharest'],
+
+['Andrei',21, 'London'],
+
+['Maria', 45, 'Paris']
+
+]
+
+Using the CSV module write each element of the list (which is another list) into a CSV file called people1.csv
+
+After writing into the file, read and print out the file contents.
+
+Use the default , (comma) as the delimiter.
+
+Are you stuck? Do you want to see the solution for this exercise? Click here.
+
+
+
+Challenge #2
+
+Change the solution from the previous challenge and use : (colon) as the delimiter.
+
+Are you stuck? Do you want to see the solution for this exercise? Click here.
