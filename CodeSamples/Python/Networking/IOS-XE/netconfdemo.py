@@ -5,8 +5,8 @@ import xml.dom.minidom
 # import logging
 # logging.basicConfig(level=logging.DEBUG)
 
-router = {"host": "ios-xe-mgmt-latest.cisco.com", "port": "10000",
-          "username": "developer", "password": "C1sco12345"}
+router = {"host": "192.168.1.189", "port": "830",
+          "username": "cisco", "password": "cisco"}
 print(router["host"])
 print(router["port"])
 print(router["username"])
