@@ -1,0 +1,21 @@
+FHRP - First-Hop Redundancy protocol (ex of FHRP: HSRP, GLBP, VRRP)
+HSRP - Hot Standby Routing Protocol
+GLBP - Gateway Load Balancing Protocol
+VRRP - Virtual Router Redundancy Protocol
+DAI - Dynamic ARP inspection
+IP source guard
+ECMP - Equal-cost multipathing
+ASICs - Application-specific interface circuits
+CEF - Cisco Express Forwarding(Topology-based switching)
+
+VMPS - VLAN Management Policy Server
+VSS - Virtual Switching System
+vPC - Virtual Port Channel
+LACP - Link Aggregation Control Protocol (802.1AX & 802.1aq)
+PAgP - Port Aggregation Protocol
+
+PVST+ - Per-VLAN Spanning Tree Protocol Plus
+RPVST+ - Rapid Per-VLAN Spanning Tree Protocol Plus
+MST - Multiple Spanning Tree
+BPDUs - Bridge protocol data units
+negligible, explicit

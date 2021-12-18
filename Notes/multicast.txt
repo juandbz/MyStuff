@@ -1,0 +1,27 @@
+224.0.0.0 - 239.255.255.255
+IGMP maintains your membership only within broadcast domain.
+PIM is responsible for gathering that information from client to server.
+
+IGMP join message sent from client, like an ARP I have joined this MCA, who is the group address?
+
+IGMP v1/2/3
+enrolls
+
+mroute
+*,G comes from client looking for source/server
+S,G comes from server to 
+
+IGMPv3
+SSM does not have *,G --> Client would need to know the source
+Source Specific Multicast --> no need for RP
+
+PIM
+Dense - Flooding/Purning
+Every router will flood *,G request to other PIM routers
+Until Server floods back a Stop message to all PIM routers
+
+Server does RPF check against it's routing table to go back to source
+after RPF check pass, PIM router
+
+show ip mroute
+- To see the IGM
