@@ -1,0 +1,25 @@
+hostname <name>
+!
+ip domain name abc.inc
+!
+username cisco privilege 15 secret cisco
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ privilege level 15
+line vty 0 4
+ exec-timeout 0 0
+ logging synchronous
+ privilege level 15
+exit
+crypto key generate rsa
+!
+ip ssh version 2
+!
+netconf ssh
+netconf-yang
+restconf
+ip http server
+ip http authentication local
+ip http secure-server
